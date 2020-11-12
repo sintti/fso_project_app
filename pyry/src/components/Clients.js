@@ -1,6 +1,8 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useField } from '../hooks/hooks'
-import clientService from '../services/clients'
+import { createClient, deleteClient } from '../reducers/clientReducer'
+import { Table, Form, Button } from 'react-bootstrap'
 
 const Clients = () => {
   const name = useField('text')
@@ -8,16 +10,26 @@ const Clients = () => {
   const phone = useField('text')
   const email = useField('email')
   
-  const handleClientSubmit = async (e) => {
+  const dispatch = useDispatch()
+  const clients = useSelector(state => state.clients)
+  
+  const handleClientSubmit = (e) => {
     e.preventDefault()
     try {
-      const response = await clientService.createClient({
+      dispatch(createClient({
         name: name.value,
         address: address.value,
         phone: phone.value,
         email: email.value
-      })
-      console.log(response)
+      }))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  
+  const handleDeleteClient = (id) => {
+    try {
+      dispatch(deleteClient(id))
     } catch (e) {
       console.log(e)
     }
@@ -25,17 +37,42 @@ const Clients = () => {
   
   return (
     <div>
-      <form onSubmit={handleClientSubmit}>
-        <label htmlFor='name'>Asiakkaan nimi</label>
-        <input {...name} id='name' />
-        <label htmlFor='address'>Osoite</label>
-        <input {...address} id='address' />
-        <label htmlFor='phone'>Puhelinnumero</label>
-        <input {...phone} id='phone' />
-        <label htmlFor='email'>Sähköposti</label>
-        <input {...email} id='email' />
-        <button type='submit'>Tallenna</button>
-      </form>
+      <Form onSubmit={handleClientSubmit}>
+        <Form.Group>
+        <Form.Label htmlFor='name'>Asiakkaan nimi</Form.Label>
+        <Form.Control {...name} id='name' />
+        <Form.Label htmlFor='address'>Osoite</Form.Label>
+        <Form.Control {...address} id='address' />
+        <Form.Label htmlFor='phone'>Puhelinnumero</Form.Label>
+        <Form.Control {...phone} id='phone' />
+        <Form.Label htmlFor='email'>Sähköposti</Form.Label>
+        <Form.Control {...email} id='email' />
+        <Button type='submit'>Tallenna</Button>
+        </Form.Group>
+      </Form>
+      
+      <Table striped>
+        <tbody>
+          {clients.map(client =>
+            <tr key={client.id}>
+              <td>
+                {client.name}
+              </td>
+              <td>
+                {client.address}
+              </td>
+              <td>
+                {client.phone}
+              </td>
+              <td>
+                {client.email}
+              </td>
+              <td>
+                <button onClick={() => handleDeleteClient(client.id)}>Delete</button>
+              </td>
+            </tr>)}
+        </tbody>
+      </Table>
     </div>
   )
 }

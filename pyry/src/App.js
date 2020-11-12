@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { initializeClients } from './reducers/clientReducer'
@@ -15,13 +15,32 @@ import Footer from './components/Footer'
 
 const App = () => {
   const dispatch = useDispatch()
-
+  const [user, setUser] = useState(null)
+  
   useEffect(() => {
     dispatch(initializeClients())
   }, [dispatch])
   
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedPyryUser')
+    if (loggedUserJSON) {
+      const userToSave = JSON.parse(loggedUserJSON)
+      setUser(userToSave)
+    }
+  }, [])
+  
+  if (!user) {
+    return (
+      <Router>
+        <Notification />
+        <Login setUser={setUser} />
+      </Router>
+    )
+  }
+  
   return (
-    <Router>
+   <div className='container'>
+      <Router>
       <Menu />
       <Notification />
       <Switch>
@@ -43,6 +62,7 @@ const App = () => {
       </Switch>
       <Footer />
     </Router>
+   </div>
   )
 }
 

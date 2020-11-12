@@ -27,6 +27,13 @@
       "phone": "123456789",
       "email": "sintti.pinttinen@gmail.com",
       "id": 4
+    },
+    {
+      "name": "Erkka Karjalainen",
+      "address": "Piiparinaho 24 A",
+      "phone": "0458838280",
+      "email": "erkka.karjalainen@gmail.com",
+      "id": 5
     }
   ],
   "work": [

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/clients'
+const baseUrl = 'http://localhost:3001/api/clients'
 
 const getClient = async (id) => {
   const response = await axios.get(`${baseUrl}/${id}`)
@@ -17,5 +17,10 @@ const createClient = async (clientObject) => {
   return response.data
 }
 
+const deleteClient = async (id) => {
+  const response = await axios.delete(`${baseUrl}/${id}`)
+  return response.status
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getClient, createClient, getAllClients}
+export default { getClient, createClient, getAllClients, deleteClient}
