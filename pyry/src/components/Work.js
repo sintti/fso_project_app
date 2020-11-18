@@ -17,6 +17,7 @@ const Work = () => {
   
   const handleWorkSubmit = (e) => {
     e.preventDefault()
+    dispatch(setNotification(`Lisätty työtiedot päivälle ${date.value}`))
     dispatch(createWork({
       hours: hours.value,
       trip: trip.value,
@@ -24,7 +25,6 @@ const Work = () => {
       date: date.value,
       client: client.value
     }))
-    dispatch(setNotification(`Lisätty työtiedot päivälle ${date.value}`))
   }
   
   return (

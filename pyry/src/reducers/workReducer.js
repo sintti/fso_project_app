@@ -24,6 +24,7 @@ export const intializeWork = () => {
 export const createWork = work => {
   return async dispatch => {
     const newWork = await workService.createWork(work)
+    
     dispatch({
       type: 'NEW_WORK',
       data: newWork
