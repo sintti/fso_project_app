@@ -1,6 +1,11 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/work'
+const baseUrl = 'http://localhost:3001/api/work'
+let token = null
+
+const setToken = newToken => {
+  token = `bearer ${newToken}`
+}
 
 const getWork = async (id) => {
   const response = await axios.get(`${baseUrl}/${id}`)
@@ -8,7 +13,10 @@ const getWork = async (id) => {
 }
 
 const createWork = async (workObject) => {
-  const response = await axios.post(baseUrl, workObject)
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.post(baseUrl, workObject, config)
   return response.data
 }
 
@@ -18,4 +26,4 @@ const getAllWork = async () => {
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getWork, createWork, getAllWork}
+export default { getWork, createWork, getAllWork, setToken }

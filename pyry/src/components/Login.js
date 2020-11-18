@@ -1,30 +1,30 @@
 import React from 'react'
 import { useField } from '../hooks/hooks'
 import { Form, Button } from 'react-bootstrap'
-import loginService from '../services/login'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../reducers/userReducer'
 
-const Login = (props) => {
+const Login = () => {
   const password = useField('password')
   const username = useField('text')
+  
+  const dispatch = useDispatch()
   
   
   const handleLogin = async (e) => {
     e.preventDefault()
-    
     try {
-      const loggedUser = await loginService.login({
+      dispatch(loginUser({
         username: username.value,
         password: password.value
-      })
-      props.setUser(loggedUser)
-      window.localStorage.setItem('loggedPyryUser', JSON.stringify(loggedUser))
+      }))
     } catch (e) {
       console.log(e)
     }
   }
   
   return (
-    <div className='login'>
+    <div className='container'>
       <Form onSubmit={handleLogin}>
         <Form.Group>
         <Form.Label htmlFor='username'>Käyttäjätunnus</Form.Label>

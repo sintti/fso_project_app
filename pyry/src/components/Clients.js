@@ -13,7 +13,7 @@ const Clients = () => {
   const dispatch = useDispatch()
   const clients = useSelector(state => state.clients)
   
-  const handleClientSubmit = (e) => {
+  const handleClientSubmit = async (e) => {
     e.preventDefault()
     try {
       dispatch(createClient({
@@ -24,6 +24,11 @@ const Clients = () => {
       }))
     } catch (e) {
       console.log(e)
+    } finally {
+      name.reset.resetForm()
+      address.reset.resetForm()
+      phone.reset.resetForm()
+      email.reset.resetForm()
     }
   }
   

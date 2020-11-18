@@ -1,6 +1,11 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/api/clients'
+const baseUrl = '/api/clients'
+let token = null
+
+const setToken = newToken => {
+  token = `bearer ${newToken}`
+}
 
 const getClient = async (id) => {
   const response = await axios.get(`${baseUrl}/${id}`)
@@ -12,8 +17,11 @@ const getAllClients = async () => {
   return response.data
 }
 
-const createClient = async (clientObject) => {
-  const response = await axios.post(baseUrl, clientObject)
+const createClient = async clientObject => {
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.post(baseUrl, clientObject, config)
   return response.data
 }
 
@@ -23,4 +31,4 @@ const deleteClient = async (id) => {
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getClient, createClient, getAllClients, deleteClient}
+export default { getClient, createClient, getAllClients, deleteClient, setToken}
