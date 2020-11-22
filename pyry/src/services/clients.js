@@ -8,12 +8,18 @@ const setToken = newToken => {
 }
 
 const getClient = async (id) => {
-  const response = await axios.get(`${baseUrl}/${id}`)
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.get(`${baseUrl}/${id}`, config)
   return response.data
 }
 
 const getAllClients = async () => {
-  const response = await axios.get(baseUrl)
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.get(baseUrl, config)
   return response.data
 }
 
@@ -26,7 +32,10 @@ const createClient = async clientObject => {
 }
 
 const deleteClient = async (id) => {
-  const response = await axios.delete(`${baseUrl}/${id}`)
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.delete(`${baseUrl}/${id}`, config)
   return response.status
 }
 

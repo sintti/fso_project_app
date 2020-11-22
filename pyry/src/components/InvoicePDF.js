@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Text, View, Document, StyleSheet, Font, Image } from '@react-pdf/renderer'
+import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer'
 
 Font.register({ family: 'Roboto Condensed', src: 'https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap' })
 
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 const InvoicePDF = () => (
   <Document>
     <Page size="A4" style={styles.page}>
-      <View styles={styles.topContainer} id='top-container'>
+      <View style={styles.topContainer} id='top-container'>
         <View style={styles.section} id='client-info'>
           <Text>LASKU</Text>
           <Text>Asiakkaan nimi</Text>

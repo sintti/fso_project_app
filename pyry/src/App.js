@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { initializeClients } from './reducers/clientReducer'
+import { setUserFromLocalStorage } from './reducers/userReducer'
 import clientService from './services/clients'
 import workService from './services/work'
 
@@ -13,16 +15,12 @@ import Clients from './components/Clients'
 import LandingPage from './components/LandingPage'
 import Menu from './components/Menu'
 import Footer from './components/Footer'
-import { setUserFromLocalStorage } from './reducers/userReducer'
+import Signup from './components/Signup'
 
 
 const App = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  
-  useEffect(() => {
-    dispatch(initializeClients())
-  }, [dispatch])
   
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedPyryUser')
@@ -34,11 +32,22 @@ const App = () => {
     }
   }, [dispatch])
   
+  useEffect(() => {
+    dispatch(initializeClients())
+  }, [dispatch])
+  
   if (!user) {
     return (
       <Router>
         <Notification />
-        <Login />
+        <Switch>
+          <Route path='/signup'>
+            <Signup />
+          </Route>
+          <Route path='/'>
+          <Login />
+          </Route>
+        </Switch>       
       </Router>
     )
   }

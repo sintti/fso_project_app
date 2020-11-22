@@ -1,6 +1,6 @@
 import React from 'react'
 import { PDFViewer } from '@react-pdf/renderer'
-import { Form } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
 import { useField } from '../hooks/hooks'
@@ -8,17 +8,22 @@ import InvoicePDF from './InvoicePDF'
 
 const Invoices = () => {
   const clients = useSelector(state => state.clients)
+  const user = useSelector(state => state.user)
+  
   const beginningDate = useField('date')
   const endingDate = useField('date')
   const client = useField('text')
   const testText = useField('text')
   
-  const handleInvoiceQuery = () => {
+  const handleInvoiceQuery = (e) => {
+    e.preventDefault()
     console.log('pieru pörisee')
   }
   
   return (
     <div className='container'>
+      <h2>Lasku</h2>
+      <p>Luo lasku valitsemalla aikaväli ja asiakas.</p>
       <Form onSubmit={handleInvoiceQuery}>
         <Form.Label htmlFor='date'>Aikaväli</Form.Label>
         <Form.Control {...beginningDate} id='date' />
@@ -30,6 +35,7 @@ const Invoices = () => {
           )}
         </Form.Control>
         <Form.Control {...testText} id='test-text'></Form.Control>
+        <Button type='submit'>Luo lasku</Button>
       </Form>
       <PDFViewer>
         <InvoicePDF />
