@@ -33,7 +33,9 @@ const Clients = () => {
   }
   
   const handleDeleteClient = (id) => {
+    const clientToDelete = clients.find(c => c.id === id)
     try {
+      if (window.confirm(`Delete ${clientToDelete.name}?`))
       dispatch(deleteClient(id))
     } catch (e) {
       console.log(e)
