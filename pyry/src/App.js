@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { initializeClients } from './reducers/clientReducer'
-import { setUserFromLocalStorage } from './reducers/userReducer'
+import { setUserFromLocalStorage } from './reducers/loginReducer'
 import clientService from './services/clients'
 import workService from './services/work'
 

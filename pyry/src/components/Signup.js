@@ -6,6 +6,7 @@ import { Form, Button } from 'react-bootstrap'
 import { useField } from '../hooks/hooks'
 import { setNotification } from '../reducers/notificationReducer'
 import Footer from '../components/Footer'
+import signupService from '../services/signup'
 
 const Signup = () => {
   const dispatch = useDispatch()
@@ -24,13 +25,12 @@ const Signup = () => {
   const handleSignup = (e) => {
     e.preventDefault()
     if (password !== passwordCheck) {
-      dispatch(setNotification('Salasanojen tulee olla samanlaiset.'))
+      dispatch(setNotification('Syöttämäsi salasanat eivät vastaa toisiaan.'))
     }
     const newUser = {
-      firstName: firstName.value,
-      lastName: lastName.value,
-      company: company.value,
       username: username.value,
+      name: `${firstName.value} ${lastName.value}`,
+      company: company.value,
       address: `${street.value} ${postnumber.value} ${city.value}`,
       email: email.value,
       phone: phone.value,
@@ -38,6 +38,7 @@ const Signup = () => {
     }
     
     console.log('signup ', newUser)
+    signupService.signup(newUser)
   }
   
   return (

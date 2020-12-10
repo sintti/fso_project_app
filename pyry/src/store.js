@@ -4,10 +4,10 @@ import thunk from 'redux-thunk'
 import clientReducer from './reducers/clientReducer'
 import workReducer from './reducers/workReducer'
 import notificationReducer from './reducers/notificationReducer'
-import userReducer from './reducers/userReducer'
+import loginReducer from './reducers/loginReducer'
 
 const reducer = combineReducers({
-  user: userReducer,
+  user: loginReducer,
   clients: clientReducer,
   work: workReducer,
   notifications: notificationReducer
