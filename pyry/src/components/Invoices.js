@@ -13,11 +13,10 @@ const Invoices = () => {
   const beginningDate = useField('date')
   const endingDate = useField('date')
   const client = useField('text')
-  const testText = useField('text')
   
   const handleInvoiceQuery = (e) => {
     e.preventDefault()
-    console.log('pieru pörisee')
+    console.log('clientin nimi', client.value)
   }
   
   return (
@@ -29,16 +28,16 @@ const Invoices = () => {
         <Form.Control {...beginningDate} id='date' />
         <Form.Control {...endingDate} id='date' />
         <Form.Label htmlFor="clients">Asiakas</Form.Label>
-        <Form.Control as='select' {...client} id='clients' >
+        <Form.Control as='select' {...client} id='clients' placeholder='' >
+          <option selected value='' >Valitse asiakas</option>
           {clients.map(client => 
             <option key={client.id}>{client.name}</option>
           )}
         </Form.Control>
-        <Form.Control {...testText} id='test-text'></Form.Control>
         <Button type='submit'>Luo lasku</Button>
       </Form>
       <PDFViewer>
-        <InvoicePDF />
+        <InvoicePDF user={user} />
       </PDFViewer>
     </div>
   )

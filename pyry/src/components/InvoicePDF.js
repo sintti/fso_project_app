@@ -1,5 +1,6 @@
 import React from 'react'
 import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer'
+import { useSelector } from 'react-redux'
 
 Font.register({ family: 'Roboto Condensed', src: 'https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap' })
 
@@ -36,8 +37,10 @@ const styles = StyleSheet.create({
   }
 })
 
-const InvoicePDF = () => (
-  <Document>
+const InvoicePDF = ({ user }) => {
+
+  return (
+    <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.topContainer} id='top-container'>
         <View style={styles.section} id='client-info'>
@@ -48,10 +51,10 @@ const InvoicePDF = () => (
           <Text>Puhelin</Text>
         </View>
         <View style={styles.section} id='company-info'>
-          <Text>Yrityksen nimi</Text>
-          <Text>Osoite</Text>
-          <Text>Postinro ja toimipaikka</Text>
-          <Text>Puhelin</Text>
+          <Text>{user.company}</Text>
+          <Text>{user.address}</Text>
+          <Text>{user.phone}</Text>
+          <Text>{user.email}</Text>
         </View>
       </View>
       <View id='invoice-info' style={styles.invoice}>
@@ -59,6 +62,7 @@ const InvoicePDF = () => (
       </View>
     </Page>
   </Document>
-)
+  )
+}
 
 export default InvoicePDF

@@ -1,5 +1,6 @@
 import loginService from '../services/login'
 import clientService from '../services/clients'
+import userService from '../services/user'
 
 const loginReducer = (state = null, action) => {
   switch (action.type) {
@@ -14,12 +15,16 @@ const loginReducer = (state = null, action) => {
 
 export const loginUser = (user) => {
   return async dispatch => {
-    const loggedUser = await loginService.login(user)
-    clientService.setToken(loggedUser.token)
-    window.localStorage.setItem('loggedPyryUser', JSON.stringify(loggedUser))
+    const returnedUser = await loginService.login(user)
+    const userToLocalStorage = {
+      token: returnedUser.token,
+      id: returnedUser.id
+    }
+    clientService.setToken(returnedUser.token)
+    window.localStorage.setItem('loggedPyryUser', JSON.stringify(userToLocalStorage))
     dispatch({
       type: 'SET_USER',
-      data: loggedUser
+      data: returnedUser
     })
   }
 }
@@ -31,11 +36,14 @@ export const logoutUser = () => {
   }
 }
 
-export const setUserFromLocalStorage = (user) => {
-  return {
-    type: 'SET_USER',
-    data: user
-  }
+export const setUserFromLocalStorage = (id) => {
+  return async dispatch => {
+    const userInfo = await userService.getUserInfo(id)
+    dispatch({
+      type: 'SET_USER',
+      data: userInfo
+    })
+  } 
 }
 
 export default loginReducer
