@@ -1,5 +1,5 @@
 import React from 'react'
-import { PDFViewer } from '@react-pdf/renderer'
+import { PDFDownloadLink } from '@react-pdf/renderer'
 import { Button, Form } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
@@ -12,35 +12,50 @@ const Invoices = () => {
   
   const beginningDate = useField('date')
   const endingDate = useField('date')
-  const client = useField('text')
+  const client = useField('client')
+  let chosenClient
   
-  const handleInvoiceQuery = (e) => {
+  const handleInvoiceCreation = (e) => {
     e.preventDefault()
-    console.log('clientin nimi', client.value)
+    if (client.value) {
+      chosenClient = clients.find(c => c.name === client.value)
+      console.log('chosen ', chosenClient)
+    } else {
+      console.log('valitse asiakas')
+    }
   }
   
+  const showPdfDownload = () => {
+    return (
+      <div>
+        <PDFDownloadLink document={<InvoicePDF user={user} />} fileName="invoice.pdf">
+          {({ blob, url, loading, error }) => (loading ? 'Rakennetaan laskua...' : 'Lataa lasku!')}
+        </PDFDownloadLink>
+      </div>
+    )
+  }
+  
+
   return (
     <div className='container'>
       <h2>Lasku</h2>
       <p>Luo lasku valitsemalla aikaväli ja asiakas.</p>
-      <Form onSubmit={handleInvoiceQuery}>
+      <Form onSubmit={handleInvoiceCreation}>
         <Form.Label htmlFor='date'>Aikaväli</Form.Label>
         <Form.Control {...beginningDate} id='date' />
         <Form.Control {...endingDate} id='date' />
         <Form.Label htmlFor="clients">Asiakas</Form.Label>
-        <Form.Control as='select' {...client} id='clients' placeholder='' >
-          <option selected value='' >Valitse asiakas</option>
+        <Form.Control as='select' {...client}>
+          <option key='default' value={null} >Valitse asiakas</option>
           {clients.map(client => 
             <option key={client.id}>{client.name}</option>
           )}
         </Form.Control>
         <Button type='submit'>Luo lasku</Button>
       </Form>
-      <PDFViewer>
-        <InvoicePDF user={user} />
-      </PDFViewer>
+      {showPdfDownload()}
     </div>
   )
-}
+  }
 
 export default Invoices

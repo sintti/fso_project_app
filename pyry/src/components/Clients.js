@@ -2,7 +2,9 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useField } from '../hooks/hooks'
 import { createClient, deleteClient } from '../reducers/clientReducer'
-import { Table, Form, Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
+
+import Togglable from './Togglable'
 
 const Clients = () => {
   const name = useField('text')
@@ -12,6 +14,7 @@ const Clients = () => {
   
   const dispatch = useDispatch()
   const clients = useSelector(state => state.clients)
+  const work = useSelector(state => state.work)
   
   const handleClientSubmit = async (e) => {
     e.preventDefault()
@@ -42,11 +45,17 @@ const Clients = () => {
     }
   }
   
+  const handleBilling = (id) => {
+    const workForCurrentClient = work.filter(w => w.client === id)
+    
+  }
+  
   return (
     <div>
+      <h2>Asiakkaat</h2>
       <Form onSubmit={handleClientSubmit}>
         <Form.Group>
-        <Form.Label htmlFor='name'>Asiakkaan nimi</Form.Label>
+        <Form.Label htmlFor='name'>Nimi</Form.Label>
         <Form.Control {...name} id='name' />
         <Form.Label htmlFor='address'>Osoite</Form.Label>
         <Form.Control {...address} id='address' />
@@ -58,28 +67,39 @@ const Clients = () => {
         </Form.Group>
       </Form>
       
-      <Table striped>
-        <tbody>
-          {clients.map(client =>
-            <tr key={client.id}>
-              <td>
+      <div id='clients-container'>
+        {clients.map(client =>
+          <div  key={client.id}>
+            <div>
+              <h3>
                 {client.name}
-              </td>
-              <td>
-                {client.address}
-              </td>
-              <td>
-                {client.phone}
-              </td>
-              <td>
-                {client.email}
-              </td>
-              <td>
-                <button onClick={() => handleDeleteClient(client.id)}>Delete</button>
-              </td>
-            </tr>)}
-        </tbody>
-      </Table>
+              </h3>
+            </div>
+            <div>
+              <Togglable buttonLabel='Näytä'>
+                <div id='clients wrapper'>
+                  <div id='client-info'>
+                    <p>Osoite: {client.address} </p>
+                    <p>Puhelinnumero: {client.phone}</p>
+                    <p>Sähköposti: {client.email}</p>
+                  </div>
+                  {work
+                  .filter(w => w.client === client.id)
+                  .map(w =>
+                    <div key={w.id} id='work-info'>
+                      <p>{w.date}: {w.hours} tuntia</p>
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <Button onClick={() => handleBilling(client.id)}>Laskuta</Button>
+                  <Button onClick={() => handleDeleteClient(client.id)}>Poista</Button>
+                </div>
+              </Togglable>
+            </div> 
+          </div>
+        )}
+      </div>
     </div>
   )
 }

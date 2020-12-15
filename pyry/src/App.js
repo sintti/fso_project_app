@@ -26,7 +26,6 @@ const App = () => {
     const loggedUserJSON = window.localStorage.getItem('loggedPyryUser')
     if (loggedUserJSON) {
       const userToSave = JSON.parse(loggedUserJSON)
-      console.log('aslökdklöaskld', userToSave)
       dispatch(setUserFromLocalStorage(userToSave.id))
       clientService.setToken(userToSave.token)
       workService.setToken(userToSave.token)

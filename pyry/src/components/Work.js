@@ -38,7 +38,7 @@ const Work = () => {
         <Form.Control {...purchases} id='purchases' placeholder='0' />
         <Form.Label htmlFor='date'>Päivämäärä</Form.Label>
         <Form.Control {...date} id='date' />
-        <Form.Label htmlFor="clients">Asiakas</Form.Label>
+        <Form.Label htmlFor='clients'>Asiakas</Form.Label>
         <Form.Control as='select' {...client} id='clients' >
           {clients.map(client => 
             <option key={client.id}>{client.name}</option>
