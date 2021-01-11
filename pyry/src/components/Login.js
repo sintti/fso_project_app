@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import { useField } from '../hooks/hooks'
 import { loginUser } from '../reducers/loginReducer'
 import Footer from '../components/Footer'
+import { setNotification } from '../reducers/notificationReducer'
+import { setError } from '../reducers/errorReducer'
 
 const Login = () => {
   const password = useField('password')
@@ -21,8 +23,14 @@ const Login = () => {
         username: username.value,
         password: password.value
       }))
+      username.reset.resetForm()
+      password.reset.resetForm()
+      dispatch(setNotification(`Tervetuloa ${username.value}`))
     } catch (e) {
-      console.log(e)
+      console.log('perkele',e)
+      dispatch(setError(`Käyttäjätunnus tai salasana väärin.`))
+      username.reset.resetForm()
+      password.reset.resetForm()
     }
   }
   

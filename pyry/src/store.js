@@ -5,12 +5,14 @@ import clientReducer from './reducers/clientReducer'
 import workReducer from './reducers/workReducer'
 import notificationReducer from './reducers/notificationReducer'
 import loginReducer from './reducers/loginReducer'
+import errorReducer from './reducers/errorReducer'
 
 const reducer = combineReducers({
   user: loginReducer,
   clients: clientReducer,
   work: workReducer,
-  notifications: notificationReducer
+  notification: notificationReducer,
+  error: errorReducer
 })
 
 const store = createStore(

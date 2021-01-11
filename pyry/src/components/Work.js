@@ -11,20 +11,26 @@ const Work = () => {
   const purchases = useField('number')
   const date = useField('date')
   const client = useField('text')
+  const info = useField('text')
   
   const dispatch = useDispatch()
   const clients = useSelector(state => state.clients)
   
   const handleWorkSubmit = (e) => {
     e.preventDefault()
-    dispatch(setNotification(`Lisätty työtiedot päivälle ${date.value}`))
-    dispatch(createWork({
-      hours: hours.value,
-      trip: trip.value,
-      purchases: purchases.value,
-      date: date.value,
-      client: client.value
-    }))
+    console.log(hours.value)
+    try {
+      dispatch(createWork({
+        hours: hours.value,
+        trip: trip.value,
+        purchases: purchases.value,
+        date: date.value,
+        client: client.value
+      }))
+      dispatch(setNotification(`Lisätty työtiedot päivälle ${date.value}`))
+    } catch (e) {
+      dispatch(setNotification(`Virhe lisättäessä työtietoja: ${e}`))
+    }
   }
   
   return (
@@ -38,6 +44,8 @@ const Work = () => {
         <Form.Control {...purchases} id='purchases' placeholder='0' />
         <Form.Label htmlFor='date'>Päivämäärä</Form.Label>
         <Form.Control {...date} id='date' />
+        <Form.Label htmlFor='date'>Päivän työtiedot</Form.Label>
+        <Form.Control {...info} id='info' />
         <Form.Label htmlFor='clients'>Asiakas</Form.Label>
         <Form.Control as='select' {...client} id='clients' >
           {clients.map(client => 

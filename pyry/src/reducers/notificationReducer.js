@@ -1,9 +1,9 @@
-const notificationReducer = (state = '', action) => {
+const notificationReducer = (state = null, action) => {
   switch (action.type) {
     case 'SET_NOTIFICATION':
       return action.data
     case 'HIDE_NOTIFICATION':
-      return state = ''
+      return state = null
     default:
       return state
   }
@@ -19,7 +19,7 @@ export const setNotification = notification => {
       dispatch({
         type: 'HIDE_NOTIFICATION'
       })
-    }, 3000);
+    }, 10000);
   }
 }
 

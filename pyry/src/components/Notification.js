@@ -1,12 +1,22 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Alert } from 'react-bootstrap'
 
 const Notification = () => {
-  const notification = useSelector(state => state.notifications)
+  const notification = useSelector(state => state.notification)
+  
+  console.log(notification)
+  
+  if (notification === null) {
+    return null
+  }
+  
   return (
-    <div className='notification'>
-      {notification}
-    </div>
+    <Alert variant="success" dismissible>
+      <p className="mb-0">
+        {notification}
+      </p>
+    </Alert>
   )
 }
 

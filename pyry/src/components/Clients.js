@@ -5,6 +5,8 @@ import { createClient, deleteClient } from '../reducers/clientReducer'
 import { Form, Button } from 'react-bootstrap'
 
 import Togglable from './Togglable'
+import { setNotification } from '../reducers/notificationReducer'
+import { setError } from '../reducers/errorReducer'
 
 const Clients = () => {
   const name = useField('text')
@@ -16,7 +18,7 @@ const Clients = () => {
   const clients = useSelector(state => state.clients)
   const work = useSelector(state => state.work)
   
-  const handleClientSubmit = async (e) => {
+  const handleClientSubmit = (e) => {
     e.preventDefault()
     try {
       dispatch(createClient({
@@ -25,8 +27,9 @@ const Clients = () => {
         phone: phone.value,
         email: email.value
       }))
+      dispatch(setNotification(`Asiakas ${name.value} lisätty`))
     } catch (e) {
-      console.log(e)
+      dispatch(setError(`Virhe lisättäessä asiakasta: ${e}`))
     } finally {
       name.reset.resetForm()
       address.reset.resetForm()
@@ -40,8 +43,9 @@ const Clients = () => {
     try {
       if (window.confirm(`Delete ${clientToDelete.name}?`))
       dispatch(deleteClient(id))
+      dispatch(setNotification(`Asiakas ${clientToDelete.name} poistettu`))
     } catch (e) {
-      console.log(e)
+      dispatch(setError(`Virhe poistettaessa asiakasta: ${e}`))
     }
   }
   

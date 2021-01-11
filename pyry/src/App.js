@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { initializeClients } from './reducers/clientReducer'
 import { setUserFromLocalStorage } from './reducers/loginReducer'
+import { setNotification } from './reducers/notificationReducer'
+import { setError } from './reducers/errorReducer'
 import clientService from './services/clients'
 import workService from './services/work'
 
+import Error from './components/Error'
 import Notification from './components/Notification'
 import Work from './components/Work'
 import Invoices from './components/Invoices'
@@ -23,12 +26,16 @@ const App = () => {
   const user = useSelector(state => state.user)
   
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedPyryUser')
-    if (loggedUserJSON) {
-      const userToSave = JSON.parse(loggedUserJSON)
-      dispatch(setUserFromLocalStorage(userToSave.id))
-      clientService.setToken(userToSave.token)
-      workService.setToken(userToSave.token)
+    try {
+      const loggedUserJSON = window.localStorage.getItem('loggedPyryUser')
+      if (loggedUserJSON) {
+        const userToSave = JSON.parse(loggedUserJSON)
+        dispatch(setUserFromLocalStorage(userToSave.id))
+        clientService.setToken(userToSave.token)
+        workService.setToken(userToSave.token)
+      }
+    } catch (error) {
+      dispatch(setError(error))
     }
   }, [dispatch])
   
@@ -40,6 +47,7 @@ const App = () => {
     return (
       <Router>
         <Notification />
+        <Error />
         <Switch>
           <Route path='/signup'>
             <Signup />
@@ -57,6 +65,7 @@ const App = () => {
       <Router>
       <Menu />
       <Notification />
+      <Error />
       <Switch>
         <Route path='/hours'>
           <Work />
