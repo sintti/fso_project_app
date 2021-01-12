@@ -27,7 +27,7 @@ const Clients = () => {
         phone: phone.value,
         email: email.value
       }))
-      dispatch(setNotification(`Asiakas ${name.value} lisätty`))
+      dispatch(setNotification(`Asiakas "${name.value}" lisätty`))
     } catch (e) {
       dispatch(setError(`Virhe lisättäessä asiakasta: ${e}`))
     } finally {

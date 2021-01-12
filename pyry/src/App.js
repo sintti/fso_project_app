@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { initializeClients } from './reducers/clientReducer'
 import { setUserFromLocalStorage } from './reducers/loginReducer'
-import { setNotification } from './reducers/notificationReducer'
 import { setError } from './reducers/errorReducer'
 import clientService from './services/clients'
 import workService from './services/work'
@@ -40,8 +39,14 @@ const App = () => {
   }, [dispatch])
   
   useEffect(() => {
-    dispatch(initializeClients())
-  }, [dispatch])
+    if (user) {
+      try {
+        dispatch(initializeClients())
+      } catch (e) {
+        setError(`Asiakkaiden nouto epäonnistui: ${e}`)
+      }
+    }
+  }, [user, dispatch])
   
   if (!user) {
     return (

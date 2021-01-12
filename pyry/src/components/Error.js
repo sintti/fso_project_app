@@ -5,8 +5,6 @@ import { Alert } from 'react-bootstrap'
 const Error = () => {
   const error = useSelector(state => state.error)
   
-  console.log(error)
-  
   if (error === null) {
     return null
   }
