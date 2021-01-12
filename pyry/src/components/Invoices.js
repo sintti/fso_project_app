@@ -13,13 +13,14 @@ const Invoices = () => {
   const beginningDate = useField('date')
   const endingDate = useField('date')
   const client = useField('client')
-  let chosenClient
   
   const handleInvoiceCreation = (e) => {
     e.preventDefault()
     if (client.value) {
-      chosenClient = clients.find(c => c.name === client.value)
+      let chosenClient = clients.find(c => c.name === client.value)
       console.log('chosen ', chosenClient)
+      console.log('aloituspäivä: ', beginningDate)
+      console.log('lopetuspäivä: ', endingDate)
     } else {
       console.log('valitse asiakas')
     }

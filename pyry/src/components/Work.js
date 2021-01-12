@@ -48,6 +48,7 @@ const Work = () => {
         <Form.Control {...info} id='info' />
         <Form.Label htmlFor='clients'>Asiakas</Form.Label>
         <Form.Control as='select' {...client} id='clients' >
+          <option key='default' value={null} >Valitse asiakas</option>
           {clients.map(client => 
             <option key={client.id}>{client.name}</option>
           )}
