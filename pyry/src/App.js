@@ -14,10 +14,11 @@ import Work from './components/Work'
 import Invoices from './components/Invoices'
 import Login from './components/Login'
 import Clients from './components/Clients'
-import LandingPage from './components/LandingPage'
+import Info from './components/Info'
 import Menu from './components/Menu'
 import Footer from './components/Footer'
 import Signup from './components/Signup'
+import Settings from './components/Settings'
 
 
 const App = () => {
@@ -84,8 +85,11 @@ const App = () => {
         <Route path='/login'>
           <Login />
         </Route>
+        <Route path='/settings'>
+          <Settings />
+        </Route>
         <Route path='/'>
-          <LandingPage />
+          <Info />
         </Route>
       </Switch>
       <Footer />

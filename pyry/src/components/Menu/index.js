@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, Navbar } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { logoutUser } from '../reducers/loginReducer'
+import { logoutUser } from '../../reducers/loginReducer'
 
 const Menu = () => {
   const dispatch = useDispatch()
@@ -28,6 +28,9 @@ const Menu = () => {
           </Nav.Link>
           <Nav.Link to='/invoices' href='#' as={Link}>
             Laskut
+          </Nav.Link>
+          <Nav.Link to='/settings' href='#' as={Link}>
+            Asetukset
           </Nav.Link>
           <Nav.Link onClick={handleLogout} href='#'>
             Kirjaudu ulos
