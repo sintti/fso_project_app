@@ -1,12 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, Navbar } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { logoutUser } from '../reducers/loginReducer'
 
 const Menu = () => {
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
   
   const handleLogout = (e) => {
     e.preventDefault()
@@ -21,7 +20,6 @@ const Menu = () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className='mr-auto'>
-          <p>Olet kirjautuneena käyttäjätunnuksella {user.username}</p>
           <Nav.Link to='/hours' href='#' as={Link}>
             Työaika ja kulut
           </Nav.Link>
