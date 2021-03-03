@@ -18,7 +18,6 @@ const Work = () => {
   
   const handleWorkSubmit = (e) => {
     e.preventDefault()
-    console.log(hours.value)
     try {
       dispatch(createWork({
         hours: hours.value,
@@ -28,8 +27,8 @@ const Work = () => {
         client: client.value
       }))
       dispatch(setNotification(`Lisätty työtiedot päivälle ${date.value}`))
-    } catch (e) {
-      dispatch(setNotification(`Virhe lisättäessä työtietoja: ${e}`))
+    } catch (error) {
+      dispatch(setNotification(`Virhe lisättäessä työtietoja: ${error}`))
     }
   }
   
