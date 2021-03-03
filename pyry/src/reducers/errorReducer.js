@@ -15,11 +15,6 @@ export const setError = error => {
       type: 'SET_ERROR',
       data: error
     })
-    setTimeout(() => {
-      dispatch({
-        type: 'HIDE_ERROR'
-      })
-    }, 10000);
   }
 }
 

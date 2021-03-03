@@ -15,11 +15,6 @@ export const setNotification = notification => {
       type: 'SET_NOTIFICATION',
       data: notification
     })
-    setTimeout(() => {
-      dispatch({
-        type: 'HIDE_NOTIFICATION'
-      })
-    }, 10000);
   }
 }
 
