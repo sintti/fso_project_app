@@ -3,7 +3,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer'
 import { Button, Form } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
-import { useField } from '../hooks/hooks'
+import { useField } from '../../hooks'
 import InvoicePDF from './InvoicePDF'
 
 const Invoices = () => {

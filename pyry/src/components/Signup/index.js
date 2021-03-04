@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 
-import { useField } from '../hooks/hooks'
-import { setNotification } from '../reducers/notificationReducer'
-import { setError } from '../reducers/errorReducer'
-import Footer from '../components/Footer'
-import signupService from '../services/signup'
+import { useField } from '../../hooks'
+import { setNotification } from '../../reducers/notificationReducer'
+import { setError } from '../../reducers/errorReducer'
+import Footer from '../Footer'
+import signupService from '../../services/signup'
 
 const Signup = () => {
   const dispatch = useDispatch()

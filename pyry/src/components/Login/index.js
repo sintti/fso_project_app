@@ -3,11 +3,11 @@ import { Form, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { useField } from '../hooks/hooks'
-import { loginUser } from '../reducers/loginReducer'
-import Footer from '../components/Footer'
-import { setNotification } from '../reducers/notificationReducer'
-import { setError } from '../reducers/errorReducer'
+import { useField } from '../../hooks'
+import { loginUser } from '../../reducers/loginReducer'
+import Footer from '../Footer'
+import { setNotification } from '../../reducers/notificationReducer'
+import { setError } from '../../reducers/errorReducer'
 
 const Login = () => {
   const password = useField('password')

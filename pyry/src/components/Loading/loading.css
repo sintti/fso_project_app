@@ -1,0 +1,84 @@
+:root {
+  --green: #798de9;
+  --gray-light: #f4f7f8;
+  
+  --bar-size: 10px;
+  --bar-radius: 60px;
+  --bar-bg: #b2cceb;
+  
+}
+
+@keyframes loader {
+
+	0% {
+		width: 0;
+	}
+
+	20% {
+		width: 10%;
+	}
+
+	25% {
+		width: 24%;
+	}
+
+	43% {
+		width: 41%;
+	}
+
+	56% {
+		width: 50%;
+	}
+
+	66% {
+		width: 52%;
+	}
+
+	71% {
+		width: 60%;
+	}
+
+	75% {
+		width: 76%;
+    
+	}
+
+	94% {
+		width: 86%;
+	}
+
+	100% {
+		width: 100%;
+	}
+
+}
+
+.progress-bar {
+	border-radius: var(--bar-radius);
+	overflow: hidden;
+  width: 15vw;
+}
+
+.progress-bar > span {
+  display: block;
+}
+
+.bar {
+  background: var(--gray-light);
+}
+
+.progress {
+  animation: loader 3s ease infinite;
+  background: var(--green);
+  color: #fff;
+  padding: var(--bar-size);
+  width: 0;
+}
+
+.progress-bar {
+  left: 50%;
+  max-width: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(-50%,-50%,0);
+}

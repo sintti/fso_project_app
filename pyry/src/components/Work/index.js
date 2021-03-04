@@ -1,9 +1,9 @@
 import React from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { useField } from '../hooks/hooks'
-import { createWork } from '../reducers/workReducer'
-import { setNotification } from '../reducers/notificationReducer'
+import { useField } from '../../hooks'
+import { createWork } from '../../reducers/workReducer'
+import { setNotification } from '../../reducers/notificationReducer'
 
 const Work = () => {
   const hours = useField('number')

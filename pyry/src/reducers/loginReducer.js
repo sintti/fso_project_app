@@ -2,12 +2,12 @@ import loginService from '../services/login'
 import clientService from '../services/clients'
 import userService from '../services/user'
 
-const loginReducer = (state = null, action) => {
+const loginReducer = (state = { user: null, loading: true }, action) => {
   switch (action.type) {
     case 'SET_USER':
       return action.data
     case 'LOGOUT_USER':
-      return null
+      return { user: null, loading: true }
     default:
       return state
   }
@@ -24,7 +24,7 @@ export const loginUser = (user) => {
     window.localStorage.setItem('loggedPyryUser', JSON.stringify(userToLocalStorage))
     dispatch({
       type: 'SET_USER',
-      data: returnedUser
+      data: { user: returnedUser, loading: false }
     })
   }
 }
@@ -41,7 +41,7 @@ export const setUserFromLocalStorage = (id) => {
     const userInfo = await userService.getUserInfo(id)
     dispatch({
       type: 'SET_USER',
-      data: userInfo
+      data: { user: userInfo, loading: false }
     })
   } 
 }

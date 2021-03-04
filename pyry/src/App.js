@@ -19,83 +19,102 @@ import Menu from './components/Menu'
 import Footer from './components/Footer'
 import Signup from './components/Signup'
 import Settings from './components/Settings'
+import Loading from './components/Loading'
 
 
 const App = () => {
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
+  const { user, loading } = useSelector(state => state.user)
   
   useEffect(() => {
-    try {
-      const loggedUserJSON = window.localStorage.getItem('loggedPyryUser')
-      if (loggedUserJSON) {
-        const userToSave = JSON.parse(loggedUserJSON)
-        dispatch(setUserFromLocalStorage(userToSave.id))
-        clientService.setToken(userToSave.token)
-        workService.setToken(userToSave.token)
+    const fetchUserData = async () => {
+      try {
+        const loggedUserJSON = window.localStorage.getItem('loggedPyryUser')
+        if (loggedUserJSON) {
+          const userToSave = JSON.parse(loggedUserJSON)
+          dispatch(setUserFromLocalStorage(userToSave.id))
+          clientService.setToken(userToSave.token)
+          workService.setToken(userToSave.token)
+        }
+      } catch (error) {
+        dispatch(setError(`Kirjautuminen epäonnistui.`))
+        console.error(error.message);
       }
-    } catch (error) {
-      dispatch(setError(error))
     }
+    fetchUserData()
   }, [dispatch])
   
   useEffect(() => {
-    if (user) {
-      try {
-        dispatch(initializeClients())
-      } catch (e) {
-        setError(`Asiakkaiden nouto epäonnistui: ${e}`)
+    const fetchClients = () => {
+      if (user) {
+        try {
+          dispatch(initializeClients())
+        } catch (error) {
+          setError(`Asiakkaiden nouto epäonnistui.`)
+          console.error(error.message);
+        }
       }
     }
+    fetchClients()
   }, [user, dispatch])
   
-  if (!user) {
+  if (loading) {
     return (
-      <Router>
-        <Notification />
-        <Error />
-        <Switch>
-          <Route path='/signup'>
-            <Signup />
-          </Route>
-          <Route path='/'>
-          <Login />
-          </Route>
-        </Switch>       
-      </Router>
+      <Loading />
     )
   }
   
-  return (
-   <div className='container'>
-      <Router>
-      <Menu />
-      <Notification />
-      <Error />
-      <Switch>
-        <Route path='/hours'>
-          <Work />
-        </Route>
-        <Route path='/clients'>
-          <Clients />
-        </Route>
-        <Route path='/invoices'>
-          <Invoices />
-        </Route>
-        <Route path='/login'>
-          <Login />
-        </Route>
-        <Route path='/settings'>
-          <Settings />
-        </Route>
-        <Route path='/'>
-          <Info />
-        </Route>
-      </Switch>
-      <Footer />
-    </Router>
-   </div>
-  )
+  if (!user && loading) {
+    return (
+      <div className='container'>
+        <Router>
+          <Notification />
+          <Error />
+          <Switch>
+            <Route path='/signup'>
+              <Signup />
+            </Route>
+            <Route path='/'>
+            <Login />
+            </Route>
+          </Switch>       
+        </Router>
+      </div>
+    )
+  }
+  
+  if (user && !loading) {
+    return (
+      <div className='container'>
+         <Router>
+         <Menu />
+         <Notification />
+         <Error />
+         <Switch>
+           <Route path='/hours'>
+             <Work />
+           </Route>
+           <Route path='/clients'>
+             <Clients />
+           </Route>
+           <Route path='/invoices'>
+             <Invoices />
+           </Route>
+           <Route path='/login'>
+             <Login />
+           </Route>
+           <Route path='/settings'>
+             <Settings />
+           </Route>
+           <Route path='/'>
+             <Info />
+           </Route>
+         </Switch>
+         <Footer />
+       </Router>
+      </div>
+     )
+  }
 }
 
 export default App

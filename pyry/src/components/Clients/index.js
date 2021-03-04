@@ -1,12 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useField } from '../hooks/hooks'
-import { createClient, deleteClient } from '../reducers/clientReducer'
 import { Form, Button } from 'react-bootstrap'
 
-import Togglable from './Togglable'
-import { setNotification } from '../reducers/notificationReducer'
-import { setError } from '../reducers/errorReducer'
+import { useField } from '../../hooks'
+import Togglable from '../TogglableComponent'
+import { setNotification } from '../../reducers/notificationReducer'
+import { createClient, deleteClient } from '../../reducers/clientReducer'
+import { setError } from '../../reducers/errorReducer'
 
 const Clients = () => {
   const name = useField('text')
