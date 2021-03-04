@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+  import './App.css'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -27,7 +28,7 @@ const App = () => {
   const { user, loading } = useSelector(state => state.user)
   
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchUserData = () => {
       try {
         const loggedUserJSON = window.localStorage.getItem('loggedPyryUser')
         if (loggedUserJSON) {
@@ -58,13 +59,13 @@ const App = () => {
     fetchClients()
   }, [user, dispatch])
   
-  if (loading) {
-    return (
-      <Loading />
-    )
-  }
+  // if (loading) {
+  //   return (
+  //     <Loading />
+  //   )
+  // }
   
-  if (!user && loading) {
+  if (!user) {
     return (
       <div className='container'>
         <Router>
@@ -110,7 +111,6 @@ const App = () => {
              <Info />
            </Route>
          </Switch>
-         <Footer />
        </Router>
       </div>
      )

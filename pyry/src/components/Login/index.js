@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { useField } from '../../hooks'
 import { loginUser } from '../../reducers/loginReducer'
-import Footer from '../Footer'
+
 import { setNotification } from '../../reducers/notificationReducer'
 import { setError } from '../../reducers/errorReducer'
 
@@ -39,17 +39,18 @@ const Login = () => {
       <h1>PYRY</h1>
       <Form onSubmit={handleLogin}>
         <Form.Group>
-        <Form.Label htmlFor='username'>Käyttäjätunnus</Form.Label>
-        <Form.Control {...username} id='username' />
-        <Form.Label htmlFor='password'>Salasana</Form.Label>
-        <Form.Control {...password} id='password' />
-        <Button type='submit'>Kirjaudu</Button>
+        <Form.Label className='small mb-2 mt-2' htmlFor='username'>Käyttäjätunnus</Form.Label>
+        <Form.Control {...username} id='username' placeholder='käyttäjätunnus' />
+        <Form.Label className='small mt-2' htmlFor='password'>Salasana</Form.Label>
+        <Form.Control {...password} id='password' placeholder='salasana' />
+        <div className='row justify-content-end mt-3 px-3 pt-3' >
+          <Button type='submit'>Kirjaudu</Button>
+        </div>
         </Form.Group>
       </Form>
-      <div>
+      <div className='mb-4 row justify-content-center' >
         Ei vielä tunnusta? <Link to='/signup' href='#' >Rekisteröidy</Link>
       </div>
-      <Footer /> 
     </div>
   )
 }

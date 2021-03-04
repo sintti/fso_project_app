@@ -42,21 +42,22 @@ const Signup = () => {
       </div>
       <Form onSubmit={handleSignup}>
         <Form.Group>
-          <Form.Label htmlFor='email'>Sähköposti</Form.Label>
+          <Form.Label className='small mb-2 mt-2' htmlFor='email'>Sähköposti</Form.Label>
           <Form.Control {...email} id='email' />
-          <Form.Label htmlFor='username'>Käyttäjätunnus</Form.Label>
+          <Form.Label className='small mb-2 mt-2' htmlFor='username'>Käyttäjätunnus</Form.Label>
           <Form.Control {...username} id='username' />
-          <Form.Label htmlFor='password'>Salasana</Form.Label>
+          <Form.Label className='small mb-2 mt-2' htmlFor='password'>Salasana</Form.Label>
           <Form.Control {...password} id='password' />
-          <Form.Label htmlFor='password'>Salasana uudelleen</Form.Label>
+          <Form.Label className='small mb-2 mt-2' htmlFor='password'>Salasana uudelleen</Form.Label>
           <Form.Control {...passwordCheck} id='passwordCheck' />
-          <Button type='submit'>Rekisteröidy</Button>
+          <div className='row justify-content-end mt-3 px-3 pt-3' >
+            <Button type='submit'>Rekisteröidy</Button>
+          </div>
         </Form.Group>
       </Form>
-      <div>
-        Onko sinulla jo tunnus? <Link to='/' href='#' >Kirjaudu</Link>
+      <div className='mb-4 row justify-content-center' >
+        Onko sinulla jo tunnus?<Link to='/' href='#' >Kirjaudu</Link>
       </div>
-      <Footer />
     </div>
   )
 }

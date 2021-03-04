@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Nav, Navbar } from 'react-bootstrap'
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { logoutUser } from '../../reducers/loginReducer'
+import FeatherIcon from 'feather-icons-react'
 
 const Menu = () => {
   const dispatch = useDispatch()
@@ -13,29 +14,37 @@ const Menu = () => {
   }
 
   return (
-    <Navbar collapseOnSelect expand='lg'>
+    <Navbar collapseOnSelect expand='md'>
       <Nav.Link to='/' href='#' as={Link}>
-          <h1>PYRY</h1>
+          <h1>Pyry</h1>
         </Nav.Link>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className='mr-auto'>
-          <Nav.Link to='/hours' href='#' as={Link}>
-            Työaika ja kulut
-          </Nav.Link>
-          <Nav.Link to='/clients' href='#' as={Link}>
-            Asiakkaat
-          </Nav.Link>
-          <Nav.Link to='/invoices' href='#' as={Link}>
-            Laskut
-          </Nav.Link>
-          <Nav.Link to='/settings' href='#' as={Link}>
-            Asetukset
-          </Nav.Link>
-          <Nav.Link onClick={handleLogout} href='#'>
-            Kirjaudu ulos
-          </Nav.Link>
+          <NavDropdown title='Työaika' id='basic-nav-dropdown'>
+            <Nav.Link className='menu-text' to='/hours' href='#' as={Link}>
+              Työaika ja kulut
+            </Nav.Link>
+          </NavDropdown>
+          <NavDropdown title='Asiakkaat' id='basic-nav-dropdown'>
+            <Nav.Link className='menu-text' to='/clients' href='#' as={Link}>
+              Asiakkaat
+            </Nav.Link>
+          </NavDropdown>
+          <NavDropdown title='Laskut' id='basic-nav-dropdown'>
+            <Nav.Link className='menu-text' to='/invoices' href='#' as={Link}>
+              Laskut
+            </Nav.Link>
+          </NavDropdown>
+          <NavDropdown title='Asetukset' id='basic-nav-dropdown'>
+            <Nav.Link to='/settings' href='#' as={Link}>
+              Käyttäjätiedot
+            </Nav.Link>
+          </NavDropdown>
         </Nav>
+        <Nav.Link onClick={handleLogout} href='#'>
+            <FeatherIcon icon='log-out' />  
+          </Nav.Link>
       </Navbar.Collapse>
     </Navbar>
   )

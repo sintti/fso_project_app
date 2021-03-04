@@ -1,0 +1,24 @@
+
+:root {
+  --mainText: #3e4437;
+  --mainDarkBlue: #404c24;
+  --mainBlue: #a2ac94;
+  --mainLight: #d4c9c1;
+  --mainWhite: #cbccbc;
+}
+
+h1 {
+  color: var(--mainDarkBlue);
+}
+
+.container {
+  font-family: 'Rubik', sans-serif;
+  opacity: .95;
+  background-color: var(--mainWhite);
+  color: var(--mainText);
+  height: 100vh;
+}
+
+.menu-text {
+  color: var(--mainText);
+}
