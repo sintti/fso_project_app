@@ -3,10 +3,12 @@ import './loading.css'
 
 function Loading() {
   return (
-    <div className="progress-bar">
-      <span className="bar">
-      <span className="progress"></span>
-      </span>
+    <div className='loader'>
+      <div className="progress-bar">
+        <span className="bar">
+          <span className="progress"></span>
+        </span>
+      </div>
     </div>
   )
 }

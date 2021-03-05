@@ -59,7 +59,7 @@ const App = () => {
     fetchClients()
   }, [user, dispatch])
   
-  // if (loading) {
+  // if (loading && !user) {
   //   return (
   //     <Loading />
   //   )

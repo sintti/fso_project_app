@@ -44,12 +44,12 @@ const Login = () => {
         <Form.Label className='small mt-2' htmlFor='password'>Salasana</Form.Label>
         <Form.Control {...password} id='password' placeholder='salasana' />
         <div className='row justify-content-end mt-3 px-3 pt-3' >
-          <Button type='submit'>Kirjaudu</Button>
+          <Button type='submit' >Kirjaudu</Button>
         </div>
         </Form.Group>
       </Form>
       <div className='mb-4 row justify-content-center' >
-        Ei vielä tunnusta? <Link to='/signup' href='#' >Rekisteröidy</Link>
+        <span>Ei vielä tunnusta? <Link to='/signup' href='#' > Rekisteröidy</Link></span>
       </div>
     </div>
   )

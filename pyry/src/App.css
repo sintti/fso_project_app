@@ -1,24 +1,35 @@
 
 :root {
-  --mainText: #3e4437;
-  --mainDarkBlue: #404c24;
-  --mainBlue: #a2ac94;
-  --mainLight: #d4c9c1;
-  --mainWhite: #cbccbc;
+  --mainText: #525055;
+  --mainDarkRed: #b37581;
+  --mainRed: #eb9396;
+  --mainLight: #ffb4a2;
+  --mainWhite: #eee6e6;
 }
 
 h1 {
-  color: var(--mainDarkBlue);
+  color: var(--mainDarkRed);
 }
 
 .container {
   font-family: 'Rubik', sans-serif;
-  opacity: .95;
+  opacity: .9;
   background-color: var(--mainWhite);
   color: var(--mainText);
+  list-style: none;
   height: 100vh;
 }
 
 .menu-text {
   color: var(--mainText);
+}
+
+a {
+  color: var(--mainRed);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--mainDarkRed);
 }

@@ -1,0 +1,13 @@
+.menu {
+  border-bottom: 2px solid var(--mainText);
+  margin-bottom: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+span {
+  font-size: 1.2em;
+  padding-left: 3px;
+  padding-right: 2px;
+  color: var(--mainText);
+}

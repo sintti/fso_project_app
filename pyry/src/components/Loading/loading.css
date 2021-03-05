@@ -2,8 +2,8 @@
   --green: #798de9;
   --gray-light: #f4f7f8;
   
-  --bar-size: 10px;
-  --bar-radius: 60px;
+  --bar-size: 12px;
+  --bar-radius: 30px;
   --bar-bg: #b2cceb;
   
 }
@@ -56,7 +56,7 @@
 .progress-bar {
 	border-radius: var(--bar-radius);
 	overflow: hidden;
-  width: 15vw;
+  width: 50vw;
 }
 
 .progress-bar > span {
@@ -69,16 +69,28 @@
 
 .progress {
   animation: loader 3s ease infinite;
-  background: var(--green);
-  color: #fff;
+  background: var(--mainDarkRed);
   padding: var(--bar-size);
-  width: 0;
+	opacity: 0.9;
 }
 
 .progress-bar {
   left: 50%;
+	opacity: 0.9;
   max-width: 50%;
   position: absolute;
   top: 50%;
   transform: translate3d(-50%,-50%,0);
+}
+
+.loader {
+	position: absolute;
+	top: 50%;
+	left: 5%;
+	height: 150px;
+	width: 90vw;
+	background: var(--mainLight);
+	opacity: 0.9;
+	box-shadow: 10px 10px 8px #888888;
+	border-radius: 25px;
 }

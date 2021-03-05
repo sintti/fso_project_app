@@ -56,7 +56,7 @@ const Signup = () => {
         </Form.Group>
       </Form>
       <div className='mb-4 row justify-content-center' >
-        Onko sinulla jo tunnus?<Link to='/' href='#' >Kirjaudu</Link>
+        <span>Onko sinulla jo tunnus?<Link to='/' href='#' > Kirjaudu</Link></span>
       </div>
     </div>
   )

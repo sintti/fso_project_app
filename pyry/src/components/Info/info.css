@@ -1,0 +1,12 @@
+h2, h3, h4 {
+  margin-bottom: 30px;
+  color: var(--mainDarkRed);
+  padding-left: 4px;
+}
+
+.info-text {
+  margin-bottom: 40px;
+  padding-left: 10px;
+  font-size: 1.1em;
+  line-height: 2.0;
+}
