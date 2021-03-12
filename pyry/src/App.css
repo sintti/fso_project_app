@@ -9,6 +9,8 @@
 
 h1 {
   color: var(--mainDarkRed);
+  font-size: 3rem;
+  font-variant-caps: all-petite-caps;
 }
 
 .container {

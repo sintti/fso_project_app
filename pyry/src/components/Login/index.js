@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import './login.css'
 
 import { useField } from '../../hooks'
 import { loginUser } from '../../reducers/loginReducer'
@@ -37,19 +38,23 @@ const Login = () => {
   return (
     <div className='container'>
       <h1>PYRY</h1>
-      <Form onSubmit={handleLogin}>
-        <Form.Group>
-        <Form.Label className='small mb-2 mt-2' htmlFor='username'>Käyttäjätunnus</Form.Label>
-        <Form.Control {...username} id='username' placeholder='käyttäjätunnus' />
-        <Form.Label className='small mt-2' htmlFor='password'>Salasana</Form.Label>
-        <Form.Control {...password} id='password' placeholder='salasana' />
-        <div className='row justify-content-end mt-3 px-3 pt-3' >
-          <Button type='submit' >Kirjaudu</Button>
+      <div className='row justify-content-center'>
+        <div className='p-5'>
+          <Form onSubmit={handleLogin} className='' >
+            <Form.Group >
+              <Form.Label className='small mb-2 mt-2' htmlFor='username'>Käyttäjätunnus</Form.Label>
+              <Form.Control {...username} className='login-form' id='username' placeholder='käyttäjätunnus' />
+              <Form.Label className='small mt-2' htmlFor='password'>Salasana</Form.Label>
+              <Form.Control {...password} className='login-form' id='password' placeholder='salasana' />
+              <div className='row justify-content-end mt-3 px-3 pt-3' >
+                <Button type='submit' >Kirjaudu</Button>
+              </div>
+            </Form.Group>
+          </Form>
+          <div className='mb-4 row justify-content-center' >
+            <span>Ei vielä tunnusta? <Link to='/signup' href='#' > Rekisteröidy</Link></span>
+          </div>
         </div>
-        </Form.Group>
-      </Form>
-      <div className='mb-4 row justify-content-center' >
-        <span>Ei vielä tunnusta? <Link to='/signup' href='#' > Rekisteröidy</Link></span>
       </div>
     </div>
   )

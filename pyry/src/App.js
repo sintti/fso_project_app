@@ -20,7 +20,6 @@ import Menu from './components/Menu'
 import Footer from './components/Footer'
 import Signup from './components/Signup'
 import Settings from './components/Settings'
-import Loading from './components/Loading'
 
 
 const App = () => {

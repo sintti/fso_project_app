@@ -1,10 +1,43 @@
 import React from 'react'
-import Loading from '../Loading'
+import { Form, Button } from 'react-bootstrap'
+import { User } from 'react-feather'
+
+import { useField } from '../../hooks'
 
 const Settings = () => {
+  const name  = useField('text')
+  const company = useField('text')
+  const yTunnus = useField('text')
+  const address = useField('text')
+  
+  // Do something with user input here
+  // Make the API ready in backend first though....
+  const handleSettings = (e) => {
+    e.preventDefault()
+    console.log('usersettings: ', name.value, company.value, yTunnus.value, address.value)
+  }
   return (
     <div>
-      Töttöröö
+      <h2><User size={40} /> Käyttäjäsetukset </h2>
+      <div>
+        <div className='p-5'>
+          <Form onSubmit={handleSettings} className='' >
+            <Form.Group >
+              <Form.Label className='small mb-2 mt-2' >Nimi</Form.Label>
+              <Form.Control {...name} className='' placeholder='Nimesi' />
+              <Form.Label className='small mt-2' >Yritys</Form.Label>
+              <Form.Control {...company} className='' placeholder='Yrityksen nimi' />
+              <Form.Label className='small mt-2' >Y-tunnus</Form.Label>
+              <Form.Control {...yTunnus} className='' placeholder='Y-tunnus' />
+              <Form.Label className='small mt-2' >Osoite</Form.Label>
+              <Form.Control {...address} className='' placeholder='Osoite' />
+              <div className='row justify-content-end mt-3 px-3 pt-3' >
+                <Button type='submit' >Tallenna</Button>
+              </div>
+            </Form.Group>
+          </Form>
+        </div>
+      </div>
     </div>
   )
 }
