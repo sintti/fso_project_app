@@ -1,6 +1,16 @@
 # PYRY - Pienyrittäjän ystävä
 
-Tämä on Helsingin Yliopiston Avoimen kurssin FullStackOpen 2020 projektityö. Ajatus projektiin lähti, kun yksityisyrittäjänä toimiva isäni mainitsi laskutusten tekemisen työläydestä. Tarkoituksenani on koodata yksinkertainen sovellus yrittäjän työajan ja kulujen kirjanpitoon ja asiakaslaskutusten tekemiseen.
+Pyry on Helsingin yliopiston FullStackOpen 2020 -kurssi harjoitustyönä tehty React-sovellus. Ajatuksena oli rakentaa sovellus pienyrittäjän työaikakirjanpitoa varten.
+
+## Toimintaosoite
+
+Sovellus löytyy toiminnassa osoitteesta:
+https://pyry-app.azurewebsites.net/
+
+## Työaikakirjanpito
+
+Harjoitustyöhön käytetyn ajan kirjanpito löytyy osoitteesta:
+linkki tähän
 
 _____________________________________________________________________
 
