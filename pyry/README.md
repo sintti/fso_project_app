@@ -10,7 +10,7 @@ https://pyry-app.azurewebsites.net/
 ## Työaikakirjanpito
 
 Harjoitustyöhön käytetyn ajan kirjanpito löytyy osoitteesta:
-linkki tähän
+https://github.com/sintti/fso_project_app/blob/main/kirjanpito.md
 
 _____________________________________________________________________
 
