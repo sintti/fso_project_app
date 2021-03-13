@@ -1,3 +1,8 @@
+# työaikakirjanpito
+## Erkka Karjalainen
+
+| päivä | aika | mitä tein  |
+| :----:|:-----| :-----|
 | 2.11. | 3    | Alustava suunnittelu, wireframe |
 | 3.11. | 4    | menu, placeholder data, react router, työaika, redux state management, notifikaatiot, |
 | 3.11. | 6    | alustava backend |
