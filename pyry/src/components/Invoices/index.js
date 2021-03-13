@@ -9,7 +9,6 @@ import InvoicePDF from './InvoicePDF'
 const Invoices = () => {
   const clients = useSelector(state => state.clients)
   const user = useSelector(state => state.user)
-  
   const beginningDate = useField('date')
   const endingDate = useField('date')
   const client = useField('client')
