@@ -1,3 +1,5 @@
+import { timeoutCollection } from 'time-events-manager'
+
 const errorReducer = (state = null, action) => {
   switch (action.type) {
     case 'SET_ERROR':
@@ -9,12 +11,26 @@ const errorReducer = (state = null, action) => {
   }
 }
 
+export const hideError = () => {
+  return dispatch => {
+    dispatch({
+      type: 'HIDE_ERROR'
+    })
+  }
+}
+
 export const setError = error => {
   return dispatch => {
     dispatch({
       type: 'SET_ERROR',
       data: error
     })
+    timeoutCollection.removeAll()
+    setTimeout(() => {
+      dispatch({
+        type: 'HIDE_ERROR'
+      })
+    }, 5000)
   }
 }
 

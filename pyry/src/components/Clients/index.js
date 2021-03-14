@@ -58,22 +58,24 @@ const Clients = () => {
     <div>
       <h2>Asiakkaat</h2>
       <Form onSubmit={handleClientSubmit}>
-        <Form.Group>
-        <Form.Label htmlFor='name'>Nimi</Form.Label>
-        <Form.Control {...name} id='name' />
-        <Form.Label htmlFor='address'>Osoite</Form.Label>
-        <Form.Control {...address} id='address' />
-        <Form.Label htmlFor='phone'>Puhelinnumero</Form.Label>
-        <Form.Control {...phone} id='phone' />
-        <Form.Label htmlFor='email'>Sähköposti</Form.Label>
-        <Form.Control {...email} id='email' />
-        <Button type='submit'>Tallenna</Button>
+        <Form.Group className='input-group-lg'>
+          <Form.Label className='small mb-2 mt-2' htmlFor='name'>Nimi</Form.Label>
+          <Form.Control {...name} id='name' placeholder='Nimi'/>
+          <Form.Label className='small mb-2 mt-2' htmlFor='address'>Osoite</Form.Label>
+          <Form.Control {...address} id='address' placeholder='Osoite'/>
+          <Form.Label className='small mb-2 mt-2' htmlFor='phone'>Puhelinnumero</Form.Label>
+          <Form.Control {...phone} id='phone' placeholder='Puhelinnumero'/>
+          <Form.Label className='small mb-2 mt-2' htmlFor='email'>Sähköposti</Form.Label>
+          <Form.Control {...email} id='email' placeholder='Sähköposti' />
+          <div className='row justify-content-end p-4'>
+            <Button type='submit'>Tallenna</Button>
+          </div>
         </Form.Group>
       </Form>
       
       <div id='clients-container'>
         {clients.map(client =>
-          <div  key={client.id}>
+          <div  className='p-4' key={client.id}>
             <div>
               <h3>
                 {client.name}
@@ -95,8 +97,8 @@ const Clients = () => {
                     </div>
                   )}
                 </div>
-                <div>
-                  <Button onClick={() => handleBilling(client.id)}>Laskuta</Button>
+                <div className='row justify-content-end p-4'>
+                  <Button className='mr-3' onClick={() => handleBilling(client.id)}>Laskuta</Button>
                   <Button onClick={() => handleDeleteClient(client.id)}>Poista</Button>
                 </div>
               </Togglable>

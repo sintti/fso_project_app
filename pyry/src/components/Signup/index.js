@@ -36,27 +36,31 @@ const Signup = () => {
   }
   
   return (
-    <div className='container'>
-      <div>
-        <h1>PYRY</h1>
-      </div>
-      <Form onSubmit={handleSignup}>
-        <Form.Group>
-          <Form.Label className='small mb-2 mt-2' htmlFor='email'>Sähköposti</Form.Label>
-          <Form.Control {...email} id='email' />
-          <Form.Label className='small mb-2 mt-2' htmlFor='username'>Käyttäjätunnus</Form.Label>
-          <Form.Control {...username} id='username' />
-          <Form.Label className='small mb-2 mt-2' htmlFor='password'>Salasana</Form.Label>
-          <Form.Control {...password} id='password' />
-          <Form.Label className='small mb-2 mt-2' htmlFor='password'>Salasana uudelleen</Form.Label>
-          <Form.Control {...passwordCheck} id='passwordCheck' />
-          <div className='row justify-content-end mt-3 px-3 pt-3' >
-            <Button type='submit'>Rekisteröidy</Button>
-          </div>
-        </Form.Group>
-      </Form>
-      <div className='mb-4 row justify-content-center' >
-        <span>Onko sinulla jo tunnus?<Link to='/' href='#' > Kirjaudu</Link></span>
+    <div>
+      <Link to='/' href='#' as={Link}>
+        <h1>Pyry</h1>
+      </Link>
+      <div className="row justify-content-center">
+        <div className='card p-5'>
+        <Form onSubmit={handleSignup}>
+          <Form.Group className='input-group-lg' >
+            <Form.Label className='small mb-2 mt-2' htmlFor='email'>Sähköposti</Form.Label>
+            <Form.Control {...email} id='email' />
+            <Form.Label className='small mb-2 mt-2' htmlFor='username'>Käyttäjätunnus</Form.Label>
+            <Form.Control {...username} id='username' />
+            <Form.Label className='small mb-2 mt-2' htmlFor='password'>Salasana</Form.Label>
+            <Form.Control {...password} id='password' />
+            <Form.Label className='small mb-2 mt-2' htmlFor='password'>Salasana uudelleen</Form.Label>
+            <Form.Control {...passwordCheck} id='passwordCheck' />
+            <div className='row justify-content-end mt-3 px-3 pt-3' >
+              <Button type='submit'>Rekisteröidy</Button>
+            </div>
+          </Form.Group>
+        </Form>
+        <div className='mb-4 row justify-content-center' >
+          <span>Onko sinulla jo tunnus?<Link to='/' href='#' > Kirjaudu</Link></span>
+        </div>
+        </div>
       </div>
     </div>
   )

@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 import { useField } from '../../hooks'
 import InvoicePDF from './InvoicePDF'
+import { DollarSign } from 'react-feather'
 
 const Invoices = () => {
   const clients = useSelector(state => state.clients)
@@ -37,22 +38,28 @@ const Invoices = () => {
   
 
   return (
-    <div className='container'>
-      <h2>Lasku</h2>
+    <div>
+      <h2><DollarSign size={40} /> Lasku</h2>
       <p>Luo lasku valitsemalla aikaväli ja asiakas.</p>
-      <Form onSubmit={handleInvoiceCreation}>
-        <Form.Label htmlFor='date'>Aikaväli</Form.Label>
-        <Form.Control {...beginningDate} id='date' />
-        <Form.Control {...endingDate} id='date' />
-        <Form.Label htmlFor="clients">Asiakas</Form.Label>
-        <Form.Control as='select' {...client}>
-          <option key='default' value={null} >Valitse asiakas</option>
-          {clients.map(client => 
-            <option key={client.id}>{client.name}</option>
-          )}
-        </Form.Control>
-        <Button type='submit'>Luo lasku</Button>
-      </Form>
+      <div className='p-4'>
+        <Form onSubmit={handleInvoiceCreation}>
+          <Form.Group className='input-group-lg'>
+            <Form.Label  htmlFor='date'>Aikaväli</Form.Label>
+            <Form.Control {...beginningDate} id='date' />
+            <Form.Control {...endingDate} className='mt-2' id='date' />
+            <Form.Label htmlFor="clients">Asiakas</Form.Label>
+            <Form.Control as='select' {...client}>
+              <option key='default' value={null} >Valitse asiakas</option>
+              {clients.map(client => 
+                <option key={client.id}>{client.name}</option>
+              )}
+            </Form.Control>
+            <div className='row justify-content-end p-4'>
+              <Button type='submit'>Luo lasku</Button>
+            </div>
+          </Form.Group>
+        </Form>
+      </div>
       {showPdfDownload()}
     </div>
   )

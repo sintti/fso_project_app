@@ -11,10 +11,9 @@ import { setNotification } from '../../reducers/notificationReducer'
 import { setError } from '../../reducers/errorReducer'
 
 const Login = () => {
+  const dispatch = useDispatch()
   const password = useField('password')
   const username = useField('text')
-  
-  const dispatch = useDispatch()
   
   
   const handleLogin = async (e) => {
@@ -28,7 +27,6 @@ const Login = () => {
       password.reset.resetForm()
       dispatch(setNotification(`Tervetuloa ${username.value}`))
     } catch (e) {
-      console.log('perkele',e)
       dispatch(setError(`Käyttäjätunnus tai salasana väärin.`))
       username.reset.resetForm()
       password.reset.resetForm()
@@ -36,12 +34,14 @@ const Login = () => {
   }
   
   return (
-    <div className='container'>
-      <h1>PYRY</h1>
+    <div>
+      <Link to='/' href='#' as={Link}>
+        <h1>Pyry</h1>
+      </Link>
       <div className='row justify-content-center'>
-        <div className='p-5'>
-          <Form onSubmit={handleLogin} className='' >
-            <Form.Group >
+        <div className='card p-5'>
+          <Form onSubmit={handleLogin} >
+            <Form.Group className='input-group-lg' >
               <Form.Label className='small mb-2 mt-2' htmlFor='username'>Käyttäjätunnus</Form.Label>
               <Form.Control {...username} className='login-form' id='username' placeholder='käyttäjätunnus' />
               <Form.Label className='small mt-2' htmlFor='password'>Salasana</Form.Label>

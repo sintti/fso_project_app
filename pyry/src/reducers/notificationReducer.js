@@ -1,3 +1,5 @@
+import { timeoutCollection } from 'time-events-manager'
+
 const notificationReducer = (state = null, action) => {
   switch (action.type) {
     case 'SET_NOTIFICATION':
@@ -9,12 +11,26 @@ const notificationReducer = (state = null, action) => {
   }
 }
 
+export const hideNotification = () => {
+  return dispatch => {
+    dispatch({
+      type: 'HIDE_NOTIFICATION'
+    })
+  }
+}
+
 export const setNotification = notification => {
   return dispatch => {
     dispatch({
       type: 'SET_NOTIFICATION',
       data: notification
     })
+    timeoutCollection.removeAll()
+    setTimeout(() => {
+      dispatch({
+        type: 'HIDE_NOTIFICATION'
+      })
+    }, 5000)
   }
 }
 
