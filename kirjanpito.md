@@ -28,4 +28,4 @@
 | 12.3. | 2    | React-Feather on kivempi. Asetukset sivun työstöä. |
 | 13.3. | 2    | Asetusten värkkäämistä. |
 | 14.3. | 2    | Input formien tyylit, userServicen päivitys, setTimeout notification & error |
-| yht   | 89   | | 
+| yht   | 91   | | 
