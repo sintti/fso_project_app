@@ -27,4 +27,5 @@
 | 6.3.  | 2    | Tyylejä, loading komponenttia, menun tyylejä |
 | 12.3. | 2    | React-Feather on kivempi. Asetukset sivun työstöä. |
 | 13.3. | 2    | Asetusten värkkäämistä. |
+| 14.3. | 2    | Input formien tyylit, userServicen päivitys, setTimeout notification & error |
 | yht   | 89   | | 
